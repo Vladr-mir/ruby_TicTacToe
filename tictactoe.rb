@@ -9,7 +9,7 @@ class TicTacToe
   include Grid
 
   def initialize
-    @grid = GRID_DIGITS
+    @grid = DIGITS_GRID
     @player = 'o'
     @winner = 'tie'
     @ended = false

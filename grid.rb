@@ -1,10 +1,11 @@
 # frozen_string_literal: false
 
 # Module for grid functions
-# You can find grid patterns or find
-# the position of a value in a grid
+# * Find horizontal patterns
+# * Do a transpose of a grid
+# * Find the diagonals of a grid
 module Grid
-  GRID_DIGITS = [
+  DIGITS_GRID = [
     %w[1 2 3],
     %w[4 5 6],
     %w[7 8 9]

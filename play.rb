@@ -1,4 +1,6 @@
-require './tictactoe.rb'
+# frozen_string_literal: false
+
+require './tictactoe'
 
 game = TicTacToe.new
 until game.ended
