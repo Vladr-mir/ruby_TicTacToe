@@ -15,8 +15,7 @@ class TicTacToe
     @ended = false
   end
 
-  def place_simbol
-    selection = gets.chomp
+  def place_simbol(selection)
     return 'Not a valid Input' unless selection.to_i.between?(1, 9)
 
     select_value(selection)
