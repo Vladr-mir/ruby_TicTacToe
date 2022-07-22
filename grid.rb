@@ -20,13 +20,17 @@ module Grid
   end
 
   def find_horizontal_pattern(grid)
-    aux = false
     grid.each do |row|
-      aux = row.uniq.size <= 1
-      return aux if aux
+      return row[0] if row.uniq.size <= 1 
+    end
+    nil
+  end
+
+  def reverse_grid(grid)
+    aux = Array.new(grid.length) { Array.new() }
+    for row_index in 0...grid[0].length
+      grid.each { |row| aux[row_index].push row[row_index] }
     end
     aux
   end
-
-  def find_vertical_pattern(grid); end
 end

@@ -22,12 +22,13 @@ class TicTacToe
 
     select_value(selection)
     show_current_state
-    @ended = find_vertical_pattern(@grid)
+    p find_horizontal_pattern(@grid)
   end
 
   def reset
     @grid = GRID
     @player = 'o'
+    @winner = 'tie'
     @ended = false
   end
 
