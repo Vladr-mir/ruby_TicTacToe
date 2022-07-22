@@ -5,13 +5,15 @@ require 'pry-byebug'
 
 # Implementation of the `TicTacToe` game
 class TicTacToe
-  attr_reader :grid, :player1, :player2
+  attr_reader :grid, :ended, :winner
 
   include Grid
 
   def initialize
     @grid = GRID
-    @player = false
+    @player = 'o'
+    @winner = 'tie'
+    @ended = false
   end
 
   def play
@@ -20,11 +22,13 @@ class TicTacToe
 
     select_value(selection)
     show_current_state
+    @ended = find_vertical_pattern(@grid)
   end
 
   def reset
     @grid = GRID
-    @player = false
+    @player = 'o'
+    @ended = false
   end
 
   def show_current_state
@@ -57,19 +61,18 @@ class TicTacToe
     i, j = find_in_grid(selection, @grid)
     return if i.nil? || j.nil?
 
-    if @player
-      @player = false
-      @grid[i][j] = 'x'
-    else
-      @player = true
-      @grid[i][j] = 'o'
-    end
+    @grid[i][j] = @player
+    @player = if @player == 'o'
+                'x'
+              else
+                'o'
+              end
   end
 end
 
 game = TicTacToe.new
 game.show_current_state
 
-while true
-  game.play
-end
+game.play until game.ended
+
+puts "The winner is #{game.winner}"
