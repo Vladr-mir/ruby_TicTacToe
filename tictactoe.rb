@@ -23,11 +23,11 @@ class TicTacToe
     return 'Not a valid Input' unless selection.to_i.between?(1, 9)
 
     select_value(selection)
-    if is_tie? 
-      @winner = 'tie'
-    else
-      @winner = find_winner
-    end
+    @winner = if tie?
+                'tie'
+              else
+                find_winner
+              end
     @ended = true unless @winner.nil?
   end
 
@@ -41,7 +41,7 @@ class TicTacToe
     formatted.concat "\n"
   end
 
-  #private
+  private
 
   def find_winner
     horizontal = find_horizontal_pattern(@grid)
@@ -55,7 +55,7 @@ class TicTacToe
     nil
   end
 
-  def is_tie?
+  def tie?
     @grid.each_with_index do |row, row_index|
       row.each_with_index do |value, value_index|
         return false if value == DIGITS_GRID[row_index][value_index]
