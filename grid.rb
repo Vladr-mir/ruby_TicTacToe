@@ -29,7 +29,7 @@ module Grid
 
   def transpose(grid)
     aux = Array.new(grid.length) { [] }
-    grid[0].each_with_index do |_, row_index|
+    grid[0].each_index do |row_index|
       grid.each { |row| aux[row_index].push row[row_index] }
     end
     aux
@@ -38,7 +38,7 @@ module Grid
   def find_diagonals(grid)
     max = grid.length - 1
     aux = Array.new(2) { [] }
-    grid.each_with_index do |_, i|
+    grid.each_index do |i|
       aux[0].push grid[i][i]
       aux[1].push grid[i][max - i]
     end

@@ -9,9 +9,13 @@ class TicTacToe
   include Grid
 
   def initialize
-    @grid = DIGITS_GRID
-    @player = 'o'
-    @winner = 'tie'
+    @grid = [
+      %w[1 2 3],
+      %w[4 5 6],
+      %w[7 8 9]
+    ]
+    @player = 'x'
+    @winner = nil
     @ended = false
   end
 
@@ -19,7 +23,11 @@ class TicTacToe
     return 'Not a valid Input' unless selection.to_i.between?(1, 9)
 
     select_value(selection)
-    @winner = find_winner
+    if is_tie? 
+      @winner = 'tie'
+    else
+      @winner = find_winner
+    end
     @ended = true unless @winner.nil?
   end
 
@@ -33,7 +41,7 @@ class TicTacToe
     formatted.concat "\n"
   end
 
-  private
+  #private
 
   def find_winner
     horizontal = find_horizontal_pattern(@grid)
@@ -45,6 +53,15 @@ class TicTacToe
     rules = [horizontal, vertical, diagonal]
     rules.each { |element| return element unless element.nil? }
     nil
+  end
+
+  def is_tie?
+    @grid.each_with_index do |row, row_index|
+      row.each_with_index do |value, value_index|
+        return false if value == DIGITS_GRID[row_index][value_index]
+      end
+    end
+    true
   end
 
   def format_row(row)
@@ -64,10 +81,10 @@ class TicTacToe
     return if i.nil? || j.nil?
 
     @grid[i][j] = @player
-    @player = if @player == 'o'
-                'x'
-              else
+    @player = if @player == 'x'
                 'o'
+              else
+                'x'
               end
   end
 end
