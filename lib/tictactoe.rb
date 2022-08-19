@@ -1,6 +1,6 @@
 # frozen_string_literal: false
 
-require './grid'
+require_relative 'grid'
 
 # Implementation of the `TicTacToe` game
 class TicTacToe

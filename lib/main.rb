@@ -1,6 +1,6 @@
 # frozen_string_literal: false
 
-require './tictactoe'
+require_relative 'tictactoe'
 
 game = TicTacToe.new
 until game.ended

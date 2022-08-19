@@ -9,7 +9,7 @@ module Grid
     %w[1 2 3],
     %w[4 5 6],
     %w[7 8 9]
-  ]
+  ].freeze
 
   def find_in_grid(value, grid)
     grid.each_with_index do |row, row_index|
@@ -28,8 +28,12 @@ module Grid
   end
 
   def transpose(grid)
+    return grid unless grid[0].is_a? Array
+
     aux = Array.new(grid.length) { [] }
     grid[0].each_index do |row_index|
+      return grid unless grid.is_a? Array
+
       grid.each { |row| aux[row_index].push row[row_index] }
     end
     aux
